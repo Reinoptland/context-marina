@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { themeContext } from "../pages";
 
-export default function ThemeToggle(props) {
+export default function ThemeToggle() {
+  const themeData = useContext(themeContext);
+
   return (
     <button
-      onClick={props.toggleTheme}
-      style={{ backgroundColor: props.colors.color }}
+      onClick={themeData.toggleTheme}
+      style={{ backgroundColor: themeData.colors.color }}
     >
-      {props.theme === "light" ? "🌚" : "🌞"}
+      {themeData.theme === "light" ? "🌚" : "🌞"}
     </button>
   );
 }
