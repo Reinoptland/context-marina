@@ -1,5 +1,8 @@
 import Head from "next/head";
 import { useState } from "react";
+import Footer from "../components/Footer";
+import Navigation from "../components/Navigation";
+import Student from "../components/Student";
 import styles from "../styles/Home.module.css";
 import themes from "../styles/theme";
 
@@ -15,6 +18,12 @@ export default function Home() {
     }
   }
 
+  const students = [
+    { id: 1, name: "Karin", specialty: "Travelling" },
+    { id: 2, name: "Rohan", specialty: "Cycling" },
+    { id: 3, name: "Koen", specialty: "Gaming" },
+  ];
+
   return (
     <div
       className={styles.container}
@@ -26,15 +35,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav>
-        <button onClick={toggleTheme}>{theme === "light" ? "🌚" : "🌞"}</button>
-      </nav>
+      <Navigation colors={colors} theme={theme} toggleTheme={toggleTheme} />
+
       <main
         className={styles.main}
         style={{ backgroundColor: colors.backgroundColor }}
-      ></main>
-
-      <footer className={styles.footer}></footer>
+      >
+        {students.map((student) => {
+          return (
+            <Student
+              key={student.id}
+              name={student.name}
+              specialty={student.specialty}
+              colors={colors}
+            />
+          );
+        })}
+      </main>
+      <Footer colors={colors} />
     </div>
   );
 }
