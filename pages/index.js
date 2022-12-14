@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import Student from "../components/Student";
@@ -7,7 +7,11 @@ import styles from "../styles/Home.module.css";
 import themes from "../styles/theme";
 
 // outside of the component
-export const themeContext = createContext({});
+const themeContext = createContext({});
+
+export function useTheme() {
+  return useContext(themeContext);
+}
 
 export default function Home() {
   const [theme, setTheme] = useState("light");

@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-import { themeContext } from "../pages";
+import React from "react";
+import { useTheme } from "../pages";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navigation(props) {
-  const themeData = useContext(themeContext);
+  const { colors } = useTheme();
+
   return (
-    <nav style={{ backgroundColor: themeData.colors.backgroundColor }}>
+    <nav style={{ backgroundColor: colors.backgroundColor }}>
       <ThemeToggle />
     </nav>
   );
